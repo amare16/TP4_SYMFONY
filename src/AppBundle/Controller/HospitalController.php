@@ -2,12 +2,15 @@
 
 namespace AppBundle\Controller;
 
+use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Hospital;
+use AppBundle\Entity\Doctor;
 use Symfony\Component\Form\Extension\Core\Type\TextType; // to insert the type of input
 
 
@@ -37,6 +40,13 @@ class HospitalController extends Controller
             $name = $post->get('name');
             $specialization = $post->get('specialization');
             $city = $post->get('city');
+            $doctor_id = $post->get('doctor_id');
+
+
+            // get the complete producer object from an id
+            $doctor = $this->getDoctrine()
+                ->getRepository(DoctrineBundle::class)->find($doctor_id);
+
 
 
             // create an object $hospital
@@ -48,6 +58,7 @@ class HospitalController extends Controller
             $hospital->setName($name);
             $hospital->setSpecialization($specialization);
             $hospital->setCity($city);
+            $hospital->setDoctor($doctor);
 
             // using EntityManager
 
@@ -67,6 +78,10 @@ class HospitalController extends Controller
                 ->getRepository(Hospital::class)
                 ->findAll();
 
+            $doctors = $this
+                ->getDoctrine()
+                ->getRepository(Doctor::class)
+                ->findAll();
 
 
 
