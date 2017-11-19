@@ -1,0 +1,61 @@
+{% extends "::base.html.twig" %}
+
+
+{% block body %}
+
+
+
+    <div class="container">
+
+        <h1>Hospitals</h1>
+
+        <form method="post">
+            <div class="form-group">
+                <input type="text" name="name" placeholder="Nom" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <input type="text" name="specialization" placeholder="Spécialisation" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <input type="text" name="city" placeholder="Ville" class="form-control">
+            </div>
+
+            <input type="submit" name="submit" value="Enregistrer" class="btn btn-primary btn-sm form-control">
+        </form>
+        <br><br><br><br>
+
+
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>Nom</th>
+                <th>Spécialisation</th>
+                <th>Ville</th>
+                <th>Actions</th>
+            </tr>
+            {% for h in hospitals %}
+                <tr>
+                    <td>{{ h.name }}</td>
+                    <td>{{ h.specialization }}</td>
+                    <td>{{ h.city }}</td>
+                    <td>
+                        <a
+                                class="btn btn-success btn-sm"
+                                href="{{ path('hospital_update', {'id': h.id}) }}">Modifier
+                        </a>
+                        <a
+                                class="btn btn-danger btn-sm"
+                                href="{{ path('hospital_delete', {'id': h.id}) }}">Supprimer
+                        </a>
+
+                    </td>
+
+                </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+
+
+{% endblock %}

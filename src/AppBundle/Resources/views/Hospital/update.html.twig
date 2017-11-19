@@ -1,0 +1,34 @@
+{% extends "::base.html.twig" %}
+
+
+
+{% block body %}
+
+
+    <div class="container">
+
+        <h2>Modifier d'Hopitals</h2>
+
+        <form method="post">
+            <div class="form-group">
+                <input type="text" name="name" placeholder="Nom" class="form-control" value="{{ hospital.name }}">
+            </div>
+
+            <div class="form-group">
+                <input type="text" name="specialization" placeholder="Spécialisation" class="form-control" value="{{ hospital.specialization }}">
+            </div>
+
+            <div class="form-group">
+                <input type="text" name="city" placeholder="Ville" class="form-control" value="{{ hospital.city }}">
+            </div>
+
+            <input type="submit" name="submit" value="Mettre a jour" class="btn btn-success btn-sm form-control">
+        </form>
+    </div>
+
+
+
+
+
+
+{% endblock %}
