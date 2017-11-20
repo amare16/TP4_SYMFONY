@@ -1,7 +1,26 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}AppBundle:Doctor:index{% endblock %}
 
 {% block body %}
-<h1>Welcome to the Doctor:index page</h1>
+
+
+
+
+
+
+        <div class="container" style="width: 50%">
+            <h2>Listes des Docteurs</h2>
+            {% for d in doctors %}
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <td>{{ d.name }}</td>
+
+                    </tr>
+                </table>
+            {% endfor %}
+        </div>
+
+
+
+
 {% endblock %}

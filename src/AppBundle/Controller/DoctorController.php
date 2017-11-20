@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Doctor;
+use AppBundle\Entity\Hospital;
 use Symfony\Component\Form\Extension\Core\Type\TextType; // to insert the type of input
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
@@ -31,7 +32,7 @@ class DoctorController extends Controller
     }
 
     /**
-     * @Route("/add")
+     * @Route("/add", name="doctor_page")
      */
     public function addAction(Request $request) {
 

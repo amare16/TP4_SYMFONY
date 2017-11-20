@@ -45,7 +45,7 @@ class HospitalController extends Controller
 
             // get the complete producer object from an id
             $doctor = $this->getDoctrine()
-                ->getRepository(DoctrineBundle::class)->find($doctor_id);
+                ->getRepository(Doctor::class)->find($doctor_id);
 
 
 
@@ -87,7 +87,8 @@ class HospitalController extends Controller
 
 
         return $this->render('AppBundle:Hospital:index.html.twig', array(
-            'hospitals' => $hospitals
+            'hospitals' => $hospitals,
+            'doctors' => $doctors
         ));
 
 

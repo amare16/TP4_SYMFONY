@@ -21,6 +21,18 @@
             <div class="form-group">
                 <input type="text" name="city" placeholder="Ville" class="form-control">
             </div>
+            <div class="form-group">
+                <select name="doctor_id">
+                    <option value="">Selecte un Docteur</option>
+                    {% for d in doctors %}
+
+                        <option value="{{ d.id }}">
+                            {{ d.name }}
+                        </option>
+
+                    {% endfor %}
+                </select>
+            </div>
 
             <input type="submit" name="submit" value="Enregistrer" class="btn btn-primary btn-sm form-control">
         </form>
@@ -32,6 +44,8 @@
                 <th>Nom</th>
                 <th>Spécialisation</th>
                 <th>Ville</th>
+                <th>Docteurs</th>
+                <th>Patients</th>
                 <th>Actions</th>
             </tr>
             {% for h in hospitals %}
@@ -39,6 +53,18 @@
                     <td>{{ h.name }}</td>
                     <td>{{ h.specialization }}</td>
                     <td>{{ h.city }}</td>
+                    <td>{% if h.doctor %}
+                        {{ h.doctor.name }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if h.patients | length > 0 %}
+
+                            {% for p in h.patients %}
+                                <div>{{ p.name }}</div>
+                            {% endfor %}
+                        {% endif %}
+                    </td>
                     <td>
                         <a
                                 class="btn btn-success btn-sm"

@@ -38,7 +38,7 @@ class Hospital
     /**
      * @var string
      *
-     * @ORM\Column(name="city", type="string", length=255)
+     * @ORM\Column(name="city", type="string", length=255)`
      */
     private $city;
 
@@ -49,6 +49,14 @@ class Hospital
      *
      */
     private $doctor;
+
+
+    /**
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Patient", mappedBy="hospital")
+     *
+     */
+    private $patients;
 
 
 
@@ -134,5 +142,29 @@ class Hospital
     public function getCity()
     {
         return $this->city;
+    }
+
+    /**
+     * Set doctor
+     *
+     * @param \AppBundle\Entity\Doctor $doctor
+     *
+     * @return Hospital
+     */
+    public function setDoctor(\AppBundle\Entity\Doctor $doctor = null)
+    {
+        $this->doctor = $doctor;
+
+        return $this;
+    }
+
+    /**
+     * Get doctor
+     *
+     * @return \AppBundle\Entity\Doctor
+     */
+    public function getDoctor()
+    {
+        return $this->doctor;
     }
 }

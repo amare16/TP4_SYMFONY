@@ -51,6 +51,14 @@ class Hospital
     private $doctor;
 
 
+    /**
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Patient", mappedBy="hospital")
+     *
+     */
+    private $patients;
+
+
 
     /**
      * Get id
@@ -158,5 +166,46 @@ class Hospital
     public function getDoctor()
     {
         return $this->doctor;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->patients = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add patient
+     *
+     * @param \AppBundle\Entity\Patient $patient
+     *
+     * @return Hospital
+     */
+    public function addPatient(\AppBundle\Entity\Patient $patient)
+    {
+        $this->patients[] = $patient;
+
+        return $this;
+    }
+
+    /**
+     * Remove patient
+     *
+     * @param \AppBundle\Entity\Patient $patient
+     */
+    public function removePatient(\AppBundle\Entity\Patient $patient)
+    {
+        $this->patients->removeElement($patient);
+    }
+
+    /**
+     * Get patients
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPatients()
+    {
+        return $this->patients;
     }
 }
